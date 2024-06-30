@@ -1,0 +1,38 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #glycemieForm="ngForm">
+      <div class="form-group">
+        <label for="level">Level</label>
+        <input type="number" [(ngModel)]="glucoseReading.level"
+               class="form-control"
+               id="level"
+               name="level"
+               placeholder="level"
+               required #level="ngModel">
+      </div>
+      <div [hidden]="!level.pristine" class="alert alert-danger">Level is required</div>
+      <div class="form-group">
+        <label for="measurementType">Measurement Type</label>
+        <input type="text" [(ngModel)]="glucoseReading.measurementType"
+               class="form-control"
+               id="measurementType"
+               name="measurementType"
+               placeholder="Enter measurement type"
+               required #measurementType="ngModel">
+        <div [hidden]="!measurementType.pristine" class="alert alert-danger">Measurement type is required</div>
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="text" [(ngModel)]="glucoseReading.comment"
+               class="form-control"
+               id="comment"
+               name="comment"
+               placeholder="Enter comment"
+               required #comment="ngModel">
+        <div [hidden]="!comment.pristine" class="alert alert-danger">Comment is required</div>
+      </div>
+      <button type="submit" [disabled]="!glycemieForm.form.valid"
+              class="btn btn-info">{{ isEdit ? 'Update' : 'Submit' }}</button>
+    </form>
+  </div>
+</div>
